@@ -27,6 +27,16 @@ bookRouter.get('/books', async(req, res)=> {
     }
 })
 
+bookRouter.get('/books/:id', async(req, res)=> {
+    const {id} = req.params
+    try {
+        const singleBook = await bookModel.findById({_id: id})
+        res.send(singleBook)
+    } catch (error) {
+        res.send({"message": error})
+    }
+})
+
 module.exports = {
     bookRouter
 }
